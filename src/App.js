@@ -23,8 +23,10 @@ const gameRestart = () => {
 function App() {
   //board index for squares
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""])
-  //player turn to ⭕ or ❌
+  //set player to ⭕ or ❌
   const[player, setPlayer] = useState("⭕")
+  //next player
+  let playerTurn = `Next Player: ${player === '❌' ? 'Player ❌' : 'Player ⭕'}`;
   //result
   const [result, setResult] = useState({ winner: "none", state: "none" });
   // check win
@@ -47,7 +49,7 @@ function App() {
     if (result.state !== "none") {
       setWin(true);
       gameWinner();
-            // alert(`Game Finished! Winning Player: ${result.winner}`);
+      // alert(`Game Finished! Winning Player: ${result.winner}`);
     }
   }, [result]);
 
@@ -106,8 +108,7 @@ function App() {
   return (
     <div className="App">
      <div className="board">
-      <h1 className="title">Let's Play<br/>
-      Tic Tac Toe</h1>
+      <h1 className="title">Let's Play Tic Tac Toe</h1>
        <div className="row">
         <Square 
         chooseSquare={()=>{handleClick(0)}}
@@ -141,6 +142,9 @@ function App() {
         chooseSquare={()=>{handleClick(8)}}
         val={board[8]}/>
        </div>
+       <div>
+         <h1 className="title" id="turn">{playerTurn}</h1>
+        </div>
      </div>
      {win ? <WinnerScreen restartGame={restartGame} playerWon={result.winner} /> : null }
     </div>
