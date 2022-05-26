@@ -4,6 +4,22 @@ import Square from './Component/Square';
 import {Patterns} from './Patterns'
 import WinnerScreen from "./WinnerScreen";
 
+//game sounds initialize
+const click = new Audio('./click.mp3')
+const gameWinnerSound = new Audio('./win.wav')
+const restartSound = new Audio('./restart.wav')
+
+//game sound functions
+const clickPlay = () => {
+  click.play()
+}
+const gameWinner = () => {
+  gameWinnerSound.play()
+}
+const gameRestart = () => {
+  restartSound.play()
+}
+
 function App() {
   //board index for squares
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""])
@@ -29,14 +45,15 @@ function App() {
   useEffect(() => {
     
     if (result.state !== "none") {
-
       setWin(true);
-      // alert(`Game Finished! Winning Player: ${result.winner}`);
+      gameWinner();
+            // alert(`Game Finished! Winning Player: ${result.winner}`);
     }
   }, [result]);
 
   //handle click
   const handleClick =(square) => {
+    clickPlay()
     setBoard(
       board.map((val, idx) => {
         if (idx === square && val === "") {
@@ -67,6 +84,7 @@ function App() {
 
   //restart
   const restartGame = () => {
+    gameRestart()
     setBoard(["", "", "", "", "", "", "", "", ""]);
     setPlayer("⭕");
     setWin(false)
