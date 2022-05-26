@@ -20,7 +20,7 @@ The page will reload when you make changes.
 
 ## Roadmap of Future Improvements
 
-Future improvements will include keeping track of which player's turn it is and a limited time duration for each turn.
+Future improvements will include adding a timer for each player during their turn.
 
 ## Questions or Comments?
 
